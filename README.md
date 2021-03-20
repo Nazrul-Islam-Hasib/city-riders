@@ -1,10 +1,23 @@
-# Getting Started with Create React App
+# City Riders
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was done via React. Main functionality was Firebase authentication, React Router, Private Route, Context Api bootstrap and deployed in Firebase
 
+## Feature
+
+At home page you can see four different ride sharing options. Each ride is presented in a card. You can chose a ride by cliicking select.\
+Then you will be redirected to the login/Sign up page, if you didn't sign in already.\
+On the Login page you will get two options to sign up/sign in. One is custom email and password. Other is By google sign In.\
+Once you properly authenticated you can select a ride and your arrival, destination to view the cost and number of rides available.\
+All the data is fakely generated
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `Live site`
+
+You can click the link to see the live project.\
+Open [https://city-riders-28ad8.web.app/](https://city-riders-28ad8.web.app/) to view it in the browser.
+
 
 ### `npm start`
 
@@ -39,32 +52,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
