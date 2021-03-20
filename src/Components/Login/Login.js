@@ -19,7 +19,16 @@ const Login = () => {
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
+    //Toggle signIn/signup
     const [newUser, setNewUser] = useState(false)
+    const accountToggle = () => {
+        if(newUser === false){
+            setNewUser(true);
+        }
+        else{
+            setNewUser(false);
+        }
+    }
     const [user, setUser] = useState({
         isSignedIn: false,
         name: '',
@@ -49,6 +58,7 @@ const Login = () => {
             });
     }
 
+    //get value from form field
     const handleBlur = (e) => {
         let isFormValid;
         if (e.target.name === 'name') {
@@ -80,6 +90,23 @@ const Login = () => {
     }
 
     const handleSubmit = (e) => {
+        //Error message if the form is not complete
+        if(newUser){
+            if(user.email === '' || user.password === '' || user.name === ''){
+                const newUserInfo = { ...user };
+                newUserInfo.error = 'Please complete the form';
+                setUser(newUserInfo);
+            }
+        }
+        else{
+            if(user.email === '' || user.password === ''){
+                const newUserInfo = { ...user };
+                newUserInfo.error = 'Please complete the form';
+                setUser(newUserInfo);
+            }
+        }
+
+        //Sign up 
         if (newUser && user.email && user.password) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then((userCredential) => {
@@ -97,6 +124,7 @@ const Login = () => {
                 });
         }
 
+        //Sign In
         if (!newUser && user.email && user.password) {
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
                 .then((res) => {
@@ -121,6 +149,7 @@ const Login = () => {
         e.preventDefault();
     }
 
+    // Update/set username in firebase
     const setUserName = name => {
         let user = firebase.auth().currentUser;
 
@@ -142,8 +171,13 @@ const Login = () => {
                 <div className="row text-center justify-content-center">
                     <div className="col-md-8">
                         <div className="form-content">
-                            <input type="checkbox" onChange={() => setNewUser(!newUser)} id="newUser" />
-                            <label htmlFor="newUser">Sign Up</label>
+                            {/* <input type="checkbox" onChange={() => setNewUser(!newUser)} id="newUser" />
+                            <label htmlFor="newUser">Sign Up</label> */}
+                            {
+                                newUser ? <p>Already have an account? <span onClick={accountToggle}>Sign In</span></p>
+                                :  <p>Don't have an account? <span onClick={accountToggle}>Create account</span></p>
+                            }
+                            
                             <form>
                                 <div className="mb-3">
                                     {newUser && <input type="text" name="name" className="form-control" placeholder="Name" required onBlur={handleBlur} />}

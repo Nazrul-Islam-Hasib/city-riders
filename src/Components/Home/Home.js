@@ -17,7 +17,7 @@ const Home = () => {
     return (
         <div className="home-content">
             <Header></Header>
-           <div className="container">
+           <div className="container mt-5">
                <div className="row text-center">
                    <div className="col-md-12">
                        <h2>Choose your favourite Ride</h2>
@@ -33,4 +33,4 @@ const Home = () => {
     );
 };
 
-export default Home;<h1>Home</h1>
+export default Home;

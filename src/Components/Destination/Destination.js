@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { rideContext } from '../../App';
 import data from '../../Data/data.json';
 import Header from '../Header/Header';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import Map from '../Map/Map';
 import './Destination.css'
 
 
@@ -19,6 +19,7 @@ const Destination = () => {
     const { name, quantity, image, cost } = selectedRide;
     const [search, setSearch] = useState({
         searchResult: false,
+        searchError: '',
         from: '',
         to: ''
     })
@@ -32,8 +33,15 @@ const Destination = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newSearchInfo = { ...search };
-        newSearchInfo.searchResult = true;
-        setSearch(newSearchInfo);
+        if (newSearchInfo.from === '' || newSearchInfo.to === '') {
+            newSearchInfo.searchError = 'Please fill out the form properly'
+            setSearch(newSearchInfo);
+        }
+        if (newSearchInfo.from !== '' && newSearchInfo.to !== ''){
+            newSearchInfo.searchError = ''
+            newSearchInfo.searchResult = true;
+            setSearch(newSearchInfo);
+        }
     }
 
 
@@ -48,7 +56,8 @@ const Destination = () => {
                                 <div className="card text-center mb-3 mt-3">
                                     <img src={image || defaultImage} alt="Card-img" />
                                     <div className="card-body">
-                                        <h5 className="card-title">From: {search.from}, To:{search.to}</h5>
+                                        <h5 className="card-title">From: {search.from}</h5>
+                                        <h5 className="card-title">To: {search.to}</h5>
                                         <p className="card-text">Name: {name || defaultName}</p>
                                         <p className="card-text">Quantity: {quantity || defaultQuantity}</p>
                                         <p className="card-text">Cost: {cost || defaultCost}$</p>
@@ -65,23 +74,13 @@ const Destination = () => {
                                         <input type="text" name="to" className="form-control" placeholder="To" required onBlur={handleBlur} />
                                     </div>
                                     <button className="btn btn-primary" onClick={handleSubmit}>Search</button>
+                                    <p className="text-danger">{search.searchError}</p>
                                 </form>
                             </div>
                     }
 
                     <div className="col-md-8 map-img">
-                        <img src="https://cdn.pixabay.com/photo/2018/06/18/23/03/europe-3483539_960_720.jpg"/>
-                        {/* <Map google={()=> this.props.google} zoom={14}>
-
-                            <Marker onClick={()=> this.onMarkerClick}
-                                name={'Current location'} />
-
-                            <InfoWindow onClose={()=> this.onInfoWindowClose}>
-                                <div>
-                                    <h1>{this.state.selectedPlace.name}</h1>
-                                </div>
-                            </InfoWindow>
-                        </Map> */}
+                        {/* <Map></Map> */}
                     </div>
                 </div>
             </div>
@@ -89,6 +88,8 @@ const Destination = () => {
     );
 };
 
-export default GoogleApiWrapper({
-    apiKey: ("AIzaSyBvc49uWlJKu58omSKyAnGDoYCTMgDkDxM")
-})(Destination);
+export default Destination;
+
+// ({
+//     apiKey: ("AIzaSyBvc49uWlJKu58omSKyAnGDoYCTMgDkDxM")
+// })(Destination);
