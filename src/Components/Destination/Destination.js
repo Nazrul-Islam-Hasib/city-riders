@@ -80,7 +80,7 @@ const Destination = () => {
                     }
 
                     <div className="col-md-8 map-img">
-                        {/* <Map></Map> */}
+                        <Map></Map>
                     </div>
                 </div>
             </div>
