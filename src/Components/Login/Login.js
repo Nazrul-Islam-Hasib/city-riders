@@ -125,7 +125,8 @@ const Login = () => {
 
         //Sign up 
         if (newUser && user.email && user.password && user.confirmPassword) {
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            if(user.password === user.confirmPassword){
+                firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then((userCredential) => {
                     const newUserInfo = { ...user };
                     newUserInfo.error = '';
@@ -139,6 +140,7 @@ const Login = () => {
                     newUserInfo.success = false;
                     setUser(newUserInfo);
                 });
+            }
         }
 
         //Sign In
