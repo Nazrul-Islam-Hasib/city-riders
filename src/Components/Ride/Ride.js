@@ -11,7 +11,7 @@ const Ride = (props) => {
                 <div className="card-body">
                     <h5 className="card-title">{name}</h5>
                     <Link to="/destination">
-                        <button className="btn btn-sm btn-secondary"
+                        <button className="btn btn-sm btn-outline-primary"
                             onClick={() => props.handleRideItem(props.rideList)}>Select
                         </button>
                     </Link>

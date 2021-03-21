@@ -6,6 +6,8 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { LoggedInContext } from '../../App';
 import { useHistory, useLocation } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
@@ -221,8 +223,8 @@ const Login = () => {
                     </div>
 
                     <div className="col-md-8">
-                        <button className="btn btn-secondary" onClick={handleGoogleSignIn}>
-                            Continue with Google
+                        <button className="btn btn-outline-info" onClick={handleGoogleSignIn}>
+                        <FontAwesomeIcon icon={faGoogle} /> Continue with Google
                         </button>
                     </div>
                 </div>
