@@ -58,8 +58,8 @@ const Destination = () => {
                                     <div className="card-body">
                                         <h5 className="card-title">From: {search.from}</h5>
                                         <h5 className="card-title">To: {search.to}</h5>
-                                        <p className="card-text">Name: {name || defaultName}</p>
-                                        <p className="card-text">Quantity: {quantity || defaultQuantity}</p>
+                                        <p className="card-text">Ride Type: {name || defaultName}</p>
+                                        <p className="card-text">Rides Available: {quantity || defaultQuantity}</p>
                                         <p className="card-text">Cost: {cost || defaultCost}$</p>
                                     </div>
                                 </div>

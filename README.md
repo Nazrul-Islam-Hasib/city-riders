@@ -6,7 +6,7 @@ This project was done via React. Main functionality was Firebase authentication,
 
 At home page you can see four different ride sharing options. Each ride is presented in a card. You can chose a ride by cliicking select.\
 Then you will be redirected to the login/Sign up page, if you didn't sign in already.\
-On the Login page you will get two options to sign up/sign in. One is custom email and password. Other is By google sign In.\
+On the Login page you will get two options to sign up/sign in. One is custom email and password. Other is by google sign In.\
 Once you properly authenticated you can select a ride and your arrival, destination to view the cost and number of rides available.\
 All the data is fakely generated
 ## Available Scripts

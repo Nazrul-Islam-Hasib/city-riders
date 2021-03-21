@@ -34,6 +34,7 @@ const Login = () => {
         name: '',
         email: '',
         password: '',
+        confirmPassword: '',
         error: '',
         success: false
     });
@@ -81,6 +82,17 @@ const Login = () => {
             newUserInfo.error = 'Password length is short';
             setUser(newUserInfo);
         }
+        if (e.target.name === 'confirmPassword') {
+            const isPasswordValid = e.target.value.length > 5;
+            isFormValid = isPasswordValid;
+            const newUserInfo = { ...user };
+            if(newUserInfo.password === e.target.value){
+                isFormValid = true;
+                newUserInfo.error = 'Password don"t match';
+                setUser(newUserInfo);
+            }
+            
+        }
         if (isFormValid) {
             const newUserInfo = { ...user };
             newUserInfo.error = '';
@@ -92,9 +104,14 @@ const Login = () => {
     const handleSubmit = (e) => {
         //Error message if the form is not complete
         if(newUser){
-            if(user.email === '' || user.password === '' || user.name === ''){
+            if(user.email === '' || user.password === '' || user.name === '' || user.confirmPassword === ''){
                 const newUserInfo = { ...user };
                 newUserInfo.error = 'Please complete the form';
+                setUser(newUserInfo);
+            }
+            if( user.password !== user.confirmPassword ){
+                const newUserInfo = { ...user };
+                newUserInfo.error = 'Password don"t match';
                 setUser(newUserInfo);
             }
         }
@@ -107,7 +124,7 @@ const Login = () => {
         }
 
         //Sign up 
-        if (newUser && user.email && user.password) {
+        if (newUser && user.email && user.password && user.confirmPassword) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                 .then((userCredential) => {
                     const newUserInfo = { ...user };
@@ -188,6 +205,12 @@ const Login = () => {
                                 <div className="mb-3">
                                     <input type="password" name="password" className="form-control" placeholder="Password" required onBlur={handleBlur} />
                                 </div>
+                                {
+                                    newUser ? <div className="mb-3">
+                                    <input type="password" name="confirmPassword" className="form-control" placeholder="Confirm Password" required onBlur={handleBlur} />
+                                </div> : ''
+                                }
+                                
                                 <button className="btn btn-primary" onClick={handleSubmit}>{newUser ? 'Sign Up' : 'Sign In'}</button>
                             </form>
                             <p className="text-danger">{user.error}</p>
